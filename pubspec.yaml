@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   iconsax: ^0.0.8
   get: ^4.6.6
+  easy_date_timeline: ^1.0.4
+  
 
 dev_dependencies:
   flutter_test:

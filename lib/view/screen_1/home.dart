@@ -1,3 +1,4 @@
+import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
@@ -5,7 +6,7 @@ import 'package:jiitak_test/controller/app_controller/controller.dart';
 import 'package:jiitak_test/utils/constants.dart';
 
 class ScreenOne extends StatelessWidget {
-  const ScreenOne({super.key});
+  ScreenOne({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +62,17 @@ class ScreenOne extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: EasyDateTimeLine(
+              initialDate: DateTime.now(),
+              onDateChange: (selectedDate) {
+                //`selectedDate` the new date selected.
+              },
+              activeColor: Colors.orangeAccent,
+              locale: "ja",
+            ),
+          ),
           Expanded(
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -205,7 +217,7 @@ class ScreenOne extends StatelessWidget {
             height: 20,
             width: 80,
             decoration: BoxDecoration(
-                color: Colors.redAccent,
+                color: Color.fromARGB(255, 251, 99, 99),
                 borderRadius: BorderRadius.circular(5)),
             child: const Center(
                 child: Text(

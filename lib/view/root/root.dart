@@ -7,7 +7,7 @@ import 'package:jiitak_test/view/screen_2/screen_2.dart';
 class RootPage extends StatelessWidget {
   RootPage({super.key});
 
-  final screens = [const ScreenOne(), const ScreenTwo()];
+  final screens = [ ScreenOne(), const ScreenTwo()];
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class RootPage extends StatelessWidget {
                 ),
               ),
             ),
-           Text('打刻する',style: TextStyle(fontSize: 12.5),),
+           Text('打刻する',style: TextStyle(fontSize: 12),),
            SizedBox(height: 5.5,)
           ],
         ),
@@ -45,7 +45,9 @@ class RootPage extends StatelessWidget {
         currentIndex: 0,
         showSelectedLabels: true,
         showUnselectedLabels: true,
-        iconSize: 23,
+        unselectedFontSize: 12,
+        selectedFontSize: 12,
+        iconSize: 28,
         type: BottomNavigationBarType.fixed,
         
         items: const [
