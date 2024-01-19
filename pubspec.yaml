@@ -38,6 +38,8 @@ dependencies:
   iconsax: ^0.0.8
   get: ^4.6.6
   easy_date_timeline: ^1.0.4
+  google_maps: ^6.3.0
+  google_maps_flutter: ^2.5.3
   
 
 dev_dependencies:

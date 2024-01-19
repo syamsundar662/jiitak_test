@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:jiitak_test/controller/home_controller.dart';
 import 'package:jiitak_test/utils/constants.dart';
+import 'package:jiitak_test/view/screen_2/screen_2.dart';
+import 'package:jiitak_test/view/screen_3/screen_3.dart';
 
 class ScreenOne extends StatelessWidget {
   const ScreenOne({super.key});
@@ -32,15 +35,20 @@ class ScreenOne extends StatelessWidget {
             ),
           ],
         ),
-        actions: const [
+        actions:  [
           Icon(
             Icons.tune,
             size: 35,
           ),
-          Icon(
-            Icons.favorite_border_outlined,
-            size: 35,
-            color: Colors.red,
+          InkWell(
+            onTap: () {
+             Get.to(() => ScreenThree());
+            },
+            child: Icon(
+              Icons.favorite_border_outlined,
+              size: 35,
+              color: Colors.red,
+            ),
           ),
           SizedBox(
             width: 13,
@@ -131,9 +139,12 @@ class ScreenOne extends StatelessWidget {
       height: 60,
       width: 60,
       child: FloatingActionButton(
+        heroTag: 'common',
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => const ScreenTwo());
+        },
         child: const Icon(
           Icons.location_on_outlined,
           size: 30,

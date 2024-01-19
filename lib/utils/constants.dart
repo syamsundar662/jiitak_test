@@ -7,6 +7,9 @@ void size(BuildContext context) {
   screenFullHeight = MediaQuery.of(context).size.height;
 }
 
+const lightFont = Colors.white;
+const darkFont = Colors.black;
+
 const kHeight5 = SizedBox(
   height: 5,
 );
@@ -57,3 +60,5 @@ List<String> mainImages = [
   'assets/image_5.jpg',
   'assets/image_6.jpg'
 ];
+
+List<String> textFieldHeading = ['店舗名*', '代表担当者名*', '店舗電話番号*', '店舗住所*'];
