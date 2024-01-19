@@ -1,12 +1,11 @@
-import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
-import 'package:jiitak_test/controller/app_controller/controller.dart';
+import 'package:jiitak_test/controller/home_controller.dart';
 import 'package:jiitak_test/utils/constants.dart';
 
 class ScreenOne extends StatelessWidget {
-  ScreenOne({super.key});
+  const ScreenOne({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,21 +59,55 @@ class ScreenOne extends StatelessWidget {
               child: const Center(child: Text("2022年 5月 26日（木）")),
             )),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 15.0),
-            child: EasyDateTimeLine(
-              initialDate: DateTime.now(),
-              onDateChange: (selectedDate) {
-                //`selectedDate` the new date selected.
-              },
-              activeColor: Colors.orangeAccent,
-              locale: "ja",
+      body: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        child: Column(
+          children: [
+            kHeight20,
+            SizedBox(
+              height: 70,
+              width: double.infinity,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: 10,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: InkWell(
+                        onTap: () {
+                          controller.calendarTimeLine(index);
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(left: 20),
+                          width: 55,
+                          decoration: BoxDecoration(
+                              color: index == 0
+                                  ? Colors.orangeAccent
+                                  : Colors.white,
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Text('木',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500)),
+                              Text(
+                                '${index + 26}',
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w500),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ));
+                },
+              ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
+            ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
               padding: const EdgeInsets.symmetric(vertical: 20),
               scrollDirection: Axis.vertical,
               itemCount: 5,
@@ -84,9 +117,9 @@ class ScreenOne extends StatelessWidget {
                   child: cardContents(index, controller),
                 );
               },
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
       floatingActionButton: floatingActionButtonWidget(),
       // bottomNavigationBar: bottonNavigationBarWidget(),
@@ -217,7 +250,7 @@ class ScreenOne extends StatelessWidget {
             height: 20,
             width: 80,
             decoration: BoxDecoration(
-                color: Color.fromARGB(255, 251, 99, 99),
+                color: const Color.fromARGB(255, 251, 99, 99),
                 borderRadius: BorderRadius.circular(5)),
             child: const Center(
                 child: Text(
@@ -230,3 +263,16 @@ class ScreenOne extends StatelessWidget {
     );
   }
 }
+
+ // Padding(
+            //   padding: const EdgeInsets.only(left: 15.0),
+            //   child: EasyDateTimeLine(
+            //     initialDate: DateTime.now(),
+            //     onDateChange: (selectedDate) {
+            //       //`selectedDate` the new date selected.
+            //     },
+            //     activeColor: Colors.orangeAccent,
+            //     locale: "ja",
+            //   ),
+            // ),
+
