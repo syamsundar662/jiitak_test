@@ -7,56 +7,11 @@ class ScreenOne extends StatelessWidget {
   const ScreenOne({super.key});
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     AppController controller = Get.put(AppController());
     return Scaffold(
-      
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title:  Container(
-          padding: const EdgeInsets.only(left: 10),
-              height: screenFullHeight * .045,
-              width: screenFullWidth*.7,
-              child: TextField(
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-                decoration: InputDecoration(
-                  fillColor: Colors.grey.shade200,
-                  filled: true,
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(40)),
-                ),
-              ),
-            ),
-        actions: [
-          const Icon(
-            Icons.tune,
-            size: 30,
-          ),
-          const Icon(
-            Icons.favorite_border_outlined,
-            size: 30,
-            color: Colors.redAccent,
-          ),
-          SizedBox(
-            width: screenFullWidth*.04,
-          )
-        ],
-        bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(30.0),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                Colors.orange.shade400,
-                Colors.orange.shade100
-              ])),
-              height: screenFullHeight * .04,
-              child: const Center(child: Text("2022年 5月 26日（木）")),
-            )),
-      ),
+      appBar: _appBarSection(context),
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
@@ -65,45 +20,7 @@ class ScreenOne extends StatelessWidget {
             SizedBox(
               height: screenFullHeight * .09,
               width: double.infinity,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: InkWell(
-                        onTap: () {
-                          controller.calendarTimeLine(index);
-                        },
-                        child: Container(
-                          margin: index == 0
-                              ? const EdgeInsets.only(left: 20)
-                              : const EdgeInsets.only(right: 8),
-                          width: screenFullHeight * .06,
-                          decoration: BoxDecoration(
-                              color: index == 0
-                                  ? Colors.orangeAccent
-                                  : Colors.white,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text('木',
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold)),
-                              Text(
-                                '${index + 26}',
-                                style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ));
-                },
-              ),
+              child: _topDayTimeLineSection(controller),
             ),
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -125,6 +42,96 @@ class ScreenOne extends StatelessWidget {
     );
   }
 
+  ListView _topDayTimeLineSection(AppController controller) {
+    return ListView.builder(
+              shrinkWrap: true,
+              itemCount: 10,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: InkWell(
+                      onTap: () {
+                        controller.calendarTimeLine(index);
+                      },
+                      child: Container(
+                        margin: index == 0
+                            ? const EdgeInsets.only(left: 20)
+                            : const EdgeInsets.only(right: 8),
+                        width: screenFullHeight * .06,
+                        decoration: BoxDecoration(
+                            color: index == 0
+                                ? Colors.orangeAccent
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(15)),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text('木',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold)),
+                            Text(
+                              '${index + 26}',
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ));
+              },
+            );
+  }
+
+  AppBar _appBarSection(BuildContext context) {
+    return AppBar(
+      title: Container(
+        padding: const EdgeInsets.only(left: 10),
+        height: screenFullHeight * .045,
+        width: screenFullWidth * .7,
+        child: TextField(
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+          decoration: InputDecoration(
+            fillColor: Colors.grey.shade200,
+            filled: true,
+            border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(40)),
+          ),
+        ),
+      ),
+      actions: [
+        const Icon(
+          Icons.tune,
+          size: 30,
+        ),
+        const Icon(
+          Icons.favorite_border_outlined,
+          size: 30,
+          color: Colors.redAccent,
+        ),
+        SizedBox(
+          width: screenFullWidth * .04,
+        )
+      ],
+      bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(30.0),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                gradient: LinearGradient(colors: [
+              Colors.orange.shade400,
+              Colors.orange.shade100
+            ])),
+            height: screenFullHeight * .04,
+            child: const Center(child: Text("2022年 5月 26日（木）")),
+          )),
+    );
+  }
+
   SizedBox floatingActionButtonWidget() {
     return SizedBox(
       height: 60,
@@ -133,8 +140,7 @@ class ScreenOne extends StatelessWidget {
         heroTag: 'common',
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-        onPressed: () {
-        },
+        onPressed: () {},
         child: const Icon(
           Icons.location_on_outlined,
           size: 30,
@@ -245,7 +251,8 @@ class ScreenOne extends StatelessWidget {
                                             : const Icon(
                                                 Icons.favorite_border,
                                                 size: 30,
-                                                color: Color.fromARGB(255, 210, 210, 210),
+                                                color: Color.fromARGB(
+                                                    255, 210, 210, 210),
                                               )))
                               ],
                             )),
@@ -267,7 +274,7 @@ class ScreenOne extends StatelessWidget {
             child: const Center(
                 child: Text(
               '本日まで',
-              style: TextStyle(color: Colors.white,fontSize: 10),
+              style: TextStyle(color: Colors.white, fontSize: 10),
             )),
           ),
         ),
@@ -275,16 +282,3 @@ class ScreenOne extends StatelessWidget {
     );
   }
 }
-
- // Padding(
-            //   padding: const EdgeInsets.only(left: 15.0),
-            //   child: EasyDateTimeLine(
-            //     initialDate: DateTime.now(),
-            //     onDateChange: (selectedDate) {
-            //       //`selectedDate` the new date selected.
-            //     },
-            //     activeColor: Colors.orangeAccent,
-            //     locale: "ja",
-            //   ),
-            // ),
-

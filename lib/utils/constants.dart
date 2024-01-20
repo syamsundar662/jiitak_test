@@ -37,7 +37,6 @@ const kHeight100 = SizedBox(
 const kHeight200 = SizedBox(
   height: 200,
 );
-
 const kWidth10 = SizedBox(
   width: 10,
 );
@@ -60,13 +59,16 @@ List<String> mainImages = [
   'assets/image_5.jpg',
   'assets/image_6.jpg'
 ];
-
+String? timeFrom;
+String? timeTo;
+String? item;
 List<String> textFieldHeading = ['店舗名*', '代表担当者名*', '店舗電話番号*', '店舗住所*'];
+List<String> imageSelectorHeadings = ['店舗外観*', '店舗内観*', "店舗内観*", "メニュー写真","キャッチコピー*",'座席数*',];
+List<String> imageSelectorHeadings2 = ['最大3枚まで',"1枚〜3枚ずつ追加してください","1枚〜3枚ずつ追加してください","1枚〜3枚ずつ追加してください"];
+List<String> time = ['2', '4', '5', '3'];
+List<String> checkBox1 = ['月', '火', '水', '木'];
+List<String> checkBox2 = ['金', '土', '日', '祝'];
+List<String> checkBox3 = ['有', '無'];
+List<String> checkBox4 = ['有', '有（最大３枚まで）'];
+List<String> checkBoxHeadings = ['喫煙席*', '喫煙席*','来店プレゼント*'];
 
-List<String> imageSelectorHeadings = ['店舗外観*', '店舗内観*', "店舗内観*", "メニュー写真"];
-List<String> imageSelectorHeadings2 = [
-  '最大3枚まで',
-  "1枚〜3枚ずつ追加してください",
-  "1枚〜3枚ずつ追加してください",
-  "1枚〜3枚ずつ追加してください"
-];
