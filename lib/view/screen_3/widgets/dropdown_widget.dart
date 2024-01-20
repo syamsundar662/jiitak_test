@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jiitak_test/utils/constants.dart';
 
 class DropDownWidget extends StatelessWidget {
   const DropDownWidget({
@@ -16,7 +15,7 @@ class DropDownWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width,
       height: 60,
       child: DropdownButtonFormField<String>(
