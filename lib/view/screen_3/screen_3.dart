@@ -6,19 +6,23 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jiitak_test/controller/image_selector_controller.dart';
 import 'package:jiitak_test/utils/constants.dart';
+import 'package:jiitak_test/view/screen_3/widgets/dropdown_widget.dart';
+import 'package:jiitak_test/view/screen_3/widgets/image_selector_widget.dart';
 
 class ScreenThree extends StatelessWidget {
-    ScreenThree({super.key});
+  ScreenThree({super.key});
 
   String? timeFrom;
 
   String? timeTo;
 
   List<String> time = ['2', '4', '5', '3'];
- 
+
   @override
   Widget build(BuildContext context) {
     final ImageSelectorController imageController =
+        Get.put(ImageSelectorController());
+    final ImageSelectorController imageController2 =
         Get.put(ImageSelectorController());
     return Scaffold(
       appBar: AppBar(
@@ -47,18 +51,24 @@ class ScreenThree extends StatelessWidget {
               kHeight10,
               _topTextFields(),
               _mapSection(),
-              kHeight10,
-              const Text('店舗外観*（最大3枚まで）'),
-              _imageSelectorBoxes(imageController),
-              kHeight10,
-              const Text('店舗外観*（最大3枚まで）'),
-              _imageSelectorBoxes(imageController),
-              kHeight10,
-              const Text('店舗外観*（最大3枚まで）'),
-              _imageSelectorBoxes(imageController),
-              kHeight10,
-              const Text('店舗外観*（最大3枚まで）'),
-              _imageSelectorBoxes(imageController),
+              // SizedBox(
+              //   height: screenFullHeight / 1.6,
+              //   child: ListView.builder(
+              //     physics: NeverScrollableScrollPhysics(),
+              //     shrinkWrap: true,
+              //     itemCount: 4,
+              //     itemBuilder: (
+              //       context,
+              //       indexs,
+              //     ) {
+              //       return ImageSelectorWidget(
+              //         indexs: indexs,
+              //         controller: imageController,
+              //       );
+              //     },
+              //   ),
+              // ),
+              ImageSelectorWidget(controller: imageController),
               kHeight10,
               Text('data'),
               Row(
@@ -78,70 +88,6 @@ class ScreenThree extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  SizedBox _imageSelectorBoxes(ImageSelectorController controller) {
-    return SizedBox(
-      height: screenFullHeight * .13,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: 3,
-        itemBuilder: (context, index) {
-          return InkWell(
-            onTap: () {
-              controller.imagePicker(index);
-            },
-            child: Obx(
-              () => Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Container(
-                        height: screenFullHeight * .13,
-                        width: screenFullHeight * .13,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: controller.pickedFiles[index] != null
-                            ? Image.file(
-                                File(controller.pickedFiles[index]!.path),
-                                fit: BoxFit.cover,
-                              )
-                            : Image.asset('assets/imageselection.png'),
-                      ),
-                    ),
-                    controller.pickedFiles[index] != null
-              ? Positioned(
-                  right: 5,
-                  top: 5,
-                  child: Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(54, 255, 255, 255),
-                        borderRadius: BorderRadius.circular(10)),
-                    child: InkWell(
-                        onTap: () {
-                          controller.pickedFiles[index] = null;
-                        },
-                        child: const Icon(
-                          Icons.close,
-                          color: Colors.white,
-                          size: 20,
-                        )),
-                  ),
-                )
-              : const SizedBox(),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
       ),
     );
   }
@@ -180,80 +126,6 @@ class ScreenThree extends StatelessWidget {
               ..add(
                   Factory<PanGestureRecognizer>(() => PanGestureRecognizer()))),
       ),
-    );
-  }
-}
-
-class DropDownWidget extends StatelessWidget {
-  const DropDownWidget({
-    super.key,
-    required this.value,
-    required this.item,
-    required this.hintText,
-  });
-
-  final String? value;
-  final List<String> item;
-  final String hintText;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: screenFullHeight * .09,
-      width: screenFullWidth / 2.4,
-      child: DropdownButtonFormField<String>(
-        decoration: InputDecoration(
-          hintText: hintText,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-        ),
-        value: value,
-        onChanged: (String? newValue) {
-          // setState(() {
-          //   selectedCategoryvalue = newValue;
-          // });
-        },
-        items: item.map((String item) {
-          return DropdownMenuItem<String>(
-            value: item,
-            child: Text(item),
-          );
-        }).toList(),
-      ),
-    );
-  }
-}
-
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
-    super.key,
-    required this.index,
-  });
-  final int index;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      children: [
-        Text(textFieldHeading[index]),
-        SizedBox(
-          height: screenFullHeight * .06,
-          child: TextField(
-            controller: TextEditingController(),
-            decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 1.4, color: Colors.grey.shade300),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 1, color: Colors.black),
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }

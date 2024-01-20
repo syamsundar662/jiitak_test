@@ -62,3 +62,11 @@ List<String> mainImages = [
 ];
 
 List<String> textFieldHeading = ['店舗名*', '代表担当者名*', '店舗電話番号*', '店舗住所*'];
+
+List<String> imageSelectorHeadings = ['店舗外観*', '店舗内観*', "店舗内観*", "メニュー写真"];
+List<String> imageSelectorHeadings2 = [
+  '最大3枚まで',
+  "1枚〜3枚ずつ追加してください",
+  "1枚〜3枚ずつ追加してください",
+  "1枚〜3枚ずつ追加してください"
+];

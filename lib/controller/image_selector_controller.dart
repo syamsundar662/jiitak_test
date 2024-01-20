@@ -2,15 +2,23 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageSelectorController extends GetxController {
-  var pickedFiles = <XFile?>[null, null, null].obs;
+  var pickedFilesLists = <List<XFile?>>[
+    List<XFile?>.filled(3, null),
+    List<XFile?>.filled(3, null),
+    List<XFile?>.filled(3, null),
+    List<XFile?>.filled(3, null),
+  ].obs;
 
-  void imagePicker(int index) async {
+  void imagePicker(int rowIndex, int columnIndex) async {
     final selectedFiles =
         await ImagePicker().pickImage(source: ImageSource.gallery);
 
     if (selectedFiles != null) {
-      final validIndex = index.clamp(0, pickedFiles.length - 1);
-      pickedFiles[validIndex] = selectedFiles;
+      final validColumnIndex =
+          columnIndex.clamp(0, pickedFilesLists[rowIndex].length - 1);
+
+      pickedFilesLists[rowIndex][validColumnIndex] = selectedFiles;
+      pickedFilesLists.refresh();
     }
   }
 }
