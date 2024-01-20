@@ -108,7 +108,7 @@ class ScreenThree extends StatelessWidget {
   AppBar _appBarSection() {
     return AppBar(
       elevation: 1,
-      title: const Text('店舗プロフィール編集'),
+      title: const Text('店舗プロフィール編集',style: TextStyle(fontSize: 15),),
       centerTitle: true,
       actions: [
         InkWell(
