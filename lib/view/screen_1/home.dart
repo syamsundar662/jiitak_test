@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/instance_manager.dart';
-import 'package:get/state_manager.dart';
-import 'package:jiitak_test/controller/home_controller.dart';
+import 'package:jiitak_test/controller/screen_one_controller.dart';
 import 'package:jiitak_test/utils/constants.dart';
-import 'package:jiitak_test/view/screen_2/screen_2.dart';
-import 'package:jiitak_test/view/screen_3/screen_3.dart';
 
 class ScreenOne extends StatelessWidget {
   const ScreenOne({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     AppController controller = Get.put(AppController());
     return Scaffold(
+      
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Column(
-          children: [
-            SizedBox(
-              height: 40,
+        title:  Container(
+          padding: const EdgeInsets.only(left: 10),
+              height: screenFullHeight * .045,
+              width: screenFullWidth*.7,
               child: TextField(
-                // controller: _searchQuery,
                 style: const TextStyle(
                   color: Colors.white,
                 ),
@@ -33,29 +30,22 @@ class ScreenOne extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ),
-        actions:  [
-          Icon(
+        actions: [
+          const Icon(
             Icons.tune,
-            size: 35,
+            size: 30,
           ),
-          InkWell(
-            onTap: () {
-             Get.to(() => ScreenThree());
-            },
-            child: Icon(
-              Icons.favorite_border_outlined,
-              size: 35,
-              color: Colors.red,
-            ),
+          const Icon(
+            Icons.favorite_border_outlined,
+            size: 30,
+            color: Colors.redAccent,
           ),
           SizedBox(
-            width: 13,
+            width: screenFullWidth*.04,
           )
         ],
         bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(38.0),
+            preferredSize: const Size.fromHeight(30.0),
             child: Container(
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -63,7 +53,7 @@ class ScreenOne extends StatelessWidget {
                 Colors.orange.shade400,
                 Colors.orange.shade100
               ])),
-              height: 37.0,
+              height: screenFullHeight * .04,
               child: const Center(child: Text("2022年 5月 26日（木）")),
             )),
       ),
@@ -73,7 +63,7 @@ class ScreenOne extends StatelessWidget {
           children: [
             kHeight20,
             SizedBox(
-              height: 70,
+              height: screenFullHeight * .09,
               width: double.infinity,
               child: ListView.builder(
                 shrinkWrap: true,
@@ -87,8 +77,10 @@ class ScreenOne extends StatelessWidget {
                           controller.calendarTimeLine(index);
                         },
                         child: Container(
-                          margin: const EdgeInsets.only(left: 20),
-                          width: 55,
+                          margin: index == 0
+                              ? const EdgeInsets.only(left: 20)
+                              : const EdgeInsets.only(right: 8),
+                          width: screenFullHeight * .06,
                           decoration: BoxDecoration(
                               color: index == 0
                                   ? Colors.orangeAccent
@@ -99,12 +91,12 @@ class ScreenOne extends StatelessWidget {
                             children: [
                               const Text('木',
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500)),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold)),
                               Text(
                                 '${index + 26}',
                                 style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w500),
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
@@ -130,7 +122,6 @@ class ScreenOne extends StatelessWidget {
         ),
       ),
       floatingActionButton: floatingActionButtonWidget(),
-      // bottomNavigationBar: bottonNavigationBarWidget(),
     );
   }
 
@@ -143,7 +134,6 @@ class ScreenOne extends StatelessWidget {
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
         onPressed: () {
-          Get.to(() => const ScreenTwo());
         },
         child: const Icon(
           Icons.location_on_outlined,
@@ -190,14 +180,14 @@ class ScreenOne extends StatelessWidget {
                         const Text(
                           '介護有料老人ホームひまわり倶楽部の介護職／ヘルパー求人（パート／バイト）',
                           style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 15),
+                              fontWeight: FontWeight.w500, fontSize: 12),
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Container(
-                              width: 160,
-                              height: 30,
+                              width: screenFullWidth * .4,
+                              height: screenFullHeight * .03,
                               decoration:
                                   BoxDecoration(color: Colors.amber.shade50),
                               child: Align(
@@ -206,19 +196,28 @@ class ScreenOne extends StatelessWidget {
                                     '介護付き有料老人ホーム',
                                     style: TextStyle(
                                         color: Colors.amber.shade700,
-                                        fontSize: 13),
+                                        fontSize: 10),
                                   )),
                             ),
                             const Text(
                               '¥ 6,000',
-                              style: TextStyle(fontSize: 20),
+                              style: TextStyle(fontSize: 18),
                             )
                           ],
                         ),
                         kHeight5,
-                        const Text('5月 31日（水）08 : 00 ~ 17 : 00'),
-                        const Text('北海道札幌市東雲町3丁目916番地17号'),
-                        const Text('交通費 300円'),
+                        const Text(
+                          '5月 31日（水）08 : 00 ~ 17 : 00',
+                          style: TextStyle(fontSize: 11),
+                        ),
+                        const Text(
+                          '北海道札幌市東雲町3丁目916番地17号',
+                          style: TextStyle(fontSize: 11),
+                        ),
+                        const Text(
+                          '交通費 300円',
+                          style: TextStyle(fontSize: 11),
+                        ),
                         kHeight5,
                         SizedBox(
                             height: 30,
@@ -228,7 +227,9 @@ class ScreenOne extends StatelessWidget {
                               children: [
                                 Text(
                                   '住宅型有料老人ホームひまわり倶楽部',
-                                  style: TextStyle(color: Colors.grey.shade400),
+                                  style: TextStyle(
+                                      color: Colors.grey.shade400,
+                                      fontSize: 11),
                                 ),
                                 InkWell(
                                     onTap: () {
@@ -244,7 +245,7 @@ class ScreenOne extends StatelessWidget {
                                             : const Icon(
                                                 Icons.favorite_border,
                                                 size: 30,
-                                                color: Colors.grey,
+                                                color: Color.fromARGB(255, 210, 210, 210),
                                               )))
                               ],
                             )),
@@ -256,17 +257,17 @@ class ScreenOne extends StatelessWidget {
         ),
         Positioned(
           left: 15,
-          bottom: 220,
+          bottom: 200,
           child: Container(
             height: 20,
             width: 80,
             decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 251, 99, 99),
-                borderRadius: BorderRadius.circular(5)),
+                borderRadius: BorderRadius.circular(3)),
             child: const Center(
                 child: Text(
               '本日まで',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Colors.white,fontSize: 10),
             )),
           ),
         ),

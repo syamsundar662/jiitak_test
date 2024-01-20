@@ -16,6 +16,6 @@ ThemeData lightTheme = ThemeData(
         onTertiary: Colors.white),
     splashColor: Colors.transparent,
     highlightColor: Colors.transparent,
-    iconTheme: IconThemeData(color: Colors.black),
+    iconTheme: const IconThemeData(color: Colors.black),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: Colors.orange, unselectedItemColor: Colors.black));

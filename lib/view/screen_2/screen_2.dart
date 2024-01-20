@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:jiitak_test/utils/constants.dart';
 import 'package:jiitak_test/utils/widgets/custom_text_style.dart';
 
@@ -12,38 +13,38 @@ class ScreenTwo extends StatelessWidget {
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(100),
           child: AppBar(
-            bottom: const PreferredSize(
-              preferredSize: Size.fromHeight(50),
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(screenFullHeight * .05),
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
-                  height: 50,
-                  child: Row(
+                  height: screenFullHeight * .05,
+                  child: const Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       kWidth10,
                       CustomTextStyle(
                         content: 'Mer キッチン',
-                        size: 20,
+                        size: 15,
                         color: lightFont,
                         weight: FontWeight.w600,
                       ),
                       Spacer(),
                       CustomTextStyle(
                         content: '現在の獲得数',
-                        size: 20,
+                        size: 15,
                         color: lightFont,
                       ),
                       CustomTextStyle(
                         content: '30',
-                        size: 35,
+                        size: 30,
                         color: lightFont,
-                        height: 1,
-                        weight: FontWeight.bold,
+                        height: 1.7,
+                        weight: FontWeight.w500,
                       ),
                       CustomTextStyle(
                         content: '個',
-                        size: 20,
+                        size: 15,
                         color: lightFont,
                       ),
                       kWidth10
@@ -52,18 +53,23 @@ class ScreenTwo extends StatelessWidget {
                 ),
               ),
             ),
-            leading: const Padding(
-              padding: EdgeInsets.only(left: 10.0),
-              child: CircleAvatar(
-                  radius: 70,
-                  backgroundColor: Color.fromARGB(205, 143, 117, 248),
-                  child: Icon(
-                    Icons.arrow_back_ios_rounded,
-                    size: 20,
-                  )),
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 15.0),
+              child: InkWell(
+                onTap: () {
+                  Get.back();
+                },
+                child: const CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Color.fromARGB(205, 143, 117, 248),
+                    child: Icon(
+                      Icons.arrow_back_ios_rounded,
+                      size: 20,
+                    )),
+              ),
             ),
             title: const CustomTextStyle(
-                content: 'スタンプカード詳細', size: 20, color: lightFont),
+                content: 'スタンプカード詳細', size: 15, color: lightFont),
             centerTitle: true,
             backgroundColor: const Color.fromARGB(255, 165, 155, 252),
             actions: const [
@@ -86,7 +92,7 @@ class ScreenTwo extends StatelessWidget {
           children: [
             kHeight20,
             SizedBox(
-              height: 280,
+              height: screenFullHeight * .33,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
@@ -94,8 +100,8 @@ class ScreenTwo extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Container(
                     margin: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 20),
-                    width: 400,
+                        horizontal: 15, vertical: 25),
+                    width: screenFullWidth * .91,
                     // height: 400,
                     decoration: BoxDecoration(
                       boxShadow: const [
@@ -113,7 +119,8 @@ class ScreenTwo extends StatelessWidget {
                       color: lightFont,
                     ),
                     child: GridView.builder(
-                      padding: const EdgeInsets.all(8),
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: const EdgeInsets.all(10),
                       itemCount: 15,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -139,7 +146,17 @@ class ScreenTwo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [Text('2/2'), kWIdth30],
             ),
-            const Text('スタンプ獲得履歴'),
+            Row(
+              children: [
+                SizedBox(
+                  width: screenFullWidth * .04,
+                ),
+                const Text(
+                  'スタンプ獲得履歴',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
             Expanded(
               child: ListView.separated(
                 itemCount: 10,
@@ -154,13 +171,17 @@ class ScreenTwo extends StatelessWidget {
                   return const ListTile(
                     title: Text(
                       '2021 / 11 / 18',
-                      style: TextStyle(height: 2),
+                      style: TextStyle(
+                          height: 2, color: Color.fromARGB(255, 189, 189, 189)),
                     ),
                     subtitle: Row(
                       children: [
                         Text('スタンプを獲得しました。'),
                         Spacer(),
-                        Text('1 個'),
+                        Text(
+                          '1 個',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ],
                     ),
                   );
