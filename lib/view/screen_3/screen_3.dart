@@ -30,6 +30,7 @@ class ScreenThree extends StatelessWidget {
             children: [
               kHeight10,
               _topTextFields(),
+              kHeight10,
               _mapSection(),
               _imageSelector(imageController),
               kHeight10,
