@@ -20,22 +20,7 @@ class ScreenThree extends StatelessWidget {
         Get.put(ImageSelectorController());
     final CheckBoxController checkController = Get.put(CheckBoxController());
     return Scaffold(
-      appBar: AppBar(
-        elevation: 1,
-        title: const Text('店舗プロフィール編集'),
-        centerTitle: true,
-        actions: [
-          InkWell(
-            onTap: () {},
-            child: const Icon(
-              Icons.notifications_none,
-              size: 30,
-            ),
-          ),
-          kWidth10
-        ],
-        shadowColor: Colors.grey,
-      ),
+      appBar: _appBarSection(),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: SingleChildScrollView(
@@ -116,6 +101,25 @@ class ScreenThree extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  AppBar _appBarSection() {
+    return AppBar(
+      elevation: 1,
+      title: const Text('店舗プロフィール編集'),
+      centerTitle: true,
+      actions: [
+        InkWell(
+          onTap: () {},
+          child: const Icon(
+            Icons.notifications_none,
+            size: 30,
+          ),
+        ),
+        kWidth10
+      ],
+      shadowColor: Colors.grey,
     );
   }
 
@@ -324,7 +328,7 @@ class ScreenThree extends StatelessWidget {
 
   SizedBox _imageSelector(ImageSelectorController imageController) {
     return SizedBox(
-              height: screenFullHeight / 1.6,
+              height: screenFullHeight / 1.5,
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -422,7 +426,7 @@ class ScreenThree extends StatelessWidget {
           value: timeFrom,
           item: time,
           hintText: 'From',
-          width: screenFullWidth / 2.4,
+          width: screenFullWidth / 2.7,
         ),
         const Text(
           ' ~ ',
@@ -432,7 +436,7 @@ class ScreenThree extends StatelessWidget {
           value: timeTo,
           item: time,
           hintText: 'To',
-          width: screenFullWidth / 2.4,
+          width: screenFullWidth / 2.7,
         ),
       ],
     );
@@ -445,7 +449,7 @@ class ScreenThree extends StatelessWidget {
           value: timeFrom,
           item: time,
           hintText: 'From',
-          width: screenFullWidth / 2.4,
+          width: screenFullWidth / 2.7,
         ),
         const Text(
           ' ~ ',
@@ -455,7 +459,7 @@ class ScreenThree extends StatelessWidget {
           value: timeTo,
           item: time,
           hintText: 'To',
-          width: screenFullWidth / 2.4,
+          width: screenFullWidth / 2.7,
         ),
       ],
     );

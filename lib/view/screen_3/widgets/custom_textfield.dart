@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
       children: [
+        kHeight5,
         Text(textFieldHeading[index]),
         SizedBox(
           height: screenFullHeight * .06,

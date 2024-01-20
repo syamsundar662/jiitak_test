@@ -98,6 +98,7 @@ class ImageSelectorWidget extends StatelessWidget {
             },
           ),
         ),
+        kHeight10,
       ],
     );
   }
