@@ -24,7 +24,7 @@ class ScreenTwo extends StatelessWidget {
             _mainStampCardsection(),
             const Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: [Text('2/2'), kWIdth30],
+              children: [Text('1/2'), kWIdth30],
             ),
             Row(
               children: [
@@ -162,7 +162,7 @@ class ScreenTwo extends StatelessWidget {
                       content: '30',
                       size: 30,
                       color: lightFont,
-                      height: 1.7,
+                      height: 1,
                       weight: FontWeight.w500,
                     ),
                     CustomTextStyle(
