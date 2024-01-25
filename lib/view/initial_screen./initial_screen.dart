@@ -5,8 +5,8 @@ import 'package:jiitak_test/view/root/root.dart';
 import 'package:jiitak_test/view/screen_2/screen_2.dart';
 import 'package:jiitak_test/view/screen_3/screen_3.dart';
 
-class InitilaScreen extends StatelessWidget {
-  const InitilaScreen({super.key});
+class InitialScreen extends StatelessWidget {
+  const InitialScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
